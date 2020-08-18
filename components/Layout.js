@@ -111,6 +111,9 @@ export default function Layout({ children }) {
   };
 
   const theme = createMuiTheme({
+    typography: {
+      fontFamily: 'Inter, Arial, Helvetica, sans-serif',
+    },
     palette: {
       type: darkMode ? 'dark' : 'light',
     },
