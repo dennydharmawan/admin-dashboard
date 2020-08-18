@@ -1,25 +1,11 @@
-import Head from 'next/head';
-import { ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { Switch } from '@material-ui/core';
 
-import useSharedState from '../lib/hooks/useSharedState';
-import useStickyState from '../lib/hooks/useStickyState';
-import useLocalStorage from '../lib/hooks/useLocalStorage';
+import Head from '../components/Head';
+import Layout from '../components/Layout';
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
-
-  const [darkMode, setDarkMode] = useLocalStorage('darkMode', 'false');
-  console.log(darkMode);
-  //{/* <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} /> */}
-
-  const theme = createMuiTheme({
-    palette: {
-      type: darkMode ? 'dark' : 'light',
-    },
-  });
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -31,18 +17,10 @@ export default function MyApp(props) {
 
   return (
     <React.Fragment>
-      <Head>
-        <title>Wisanggeni Admin</title>
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
-        />
-      </Head>
-      <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
+      <Head></Head>
+      <Layout>
         <Component {...pageProps} />
-      </ThemeProvider>
+      </Layout>
     </React.Fragment>
   );
 }
